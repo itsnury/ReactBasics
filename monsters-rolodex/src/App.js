@@ -3,7 +3,7 @@ import { Component } from 'react';
 component class allows us to turn functional components
 to class component
 */
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -12,25 +12,67 @@ class App extends Component {
     super(); // overrides methods of superclass Component
 
     this.state = {
-      name: 'Nury'
+      // name: 'Nury'
+
+      monsters: [
+        // instead of hardcoding the data, access using an API
+
+        // {
+        //   id: '0',
+        //   name: 'Frankie'
+        // },
+        // {
+        //   id: '1',
+        //   name: 'Zolo'
+        // },
+        // {
+        //   id: '2',
+        //   name: 'Megan'
+        // }
+      ]
+      // arrays created with []
     } // state is always a json object
+  }
+
+  // life cycle method used to re-render the state component
+  // this method can be used for when the first time react renders the component
+  componentDidMount() {
+    // fetch is a promise in React, which is a way to handle
+    // asynchronous methods like fetching a website
+    // then you have a .then for code to execute once it is successful
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => this.setState(() => {
+        return {monsters: users}
+      }));
+      // first get response as a whole (entire json object)
+      // and then separate them into users
   }
 
   // explicitly telling our class component to render app
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Hi {this.state.name}</p>
-          <button 
-            onClick={() => {
-              this.setState({name:'Devin'})
-            }}
-          >
-          Change Name
-          </button>
-        </header>
+      <div className='App'>
+        <input className='search-box' type='search' placeholder='Search monster...'
+          onChange={(event) => {
+            const filteredMonsters = this.state.monsters.filter((monster) => {
+              return monster.name.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase());
+            });
+
+            this.setState(() => {
+              return {monsters: filteredMonsters}
+            });
+          }}></input>
+
+        {
+          this.state.monsters.map((monster) => {
+            return (
+              <div key={monster.id}>
+                <h1>{monster.name}</h1>
+              </div>
+            )
+          })
+        }
       </div>
     );
   }
