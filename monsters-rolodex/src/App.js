@@ -5,6 +5,7 @@ to class component
 */
 //import logo from './logo.svg';
 import './App.css';
+import CardList from './components/card-list/card-list.component'
 
 class App extends Component {
   // consructor always runs first when App is called
@@ -72,13 +73,16 @@ class App extends Component {
         </input>
 
         {
-          filteredMonsters.map((monster) => {
-            return (
-              <div key={monster.id}>
-                <h1>{monster.name}</h1>
-              </div>
-            )
-          })
+          // filteredMonsters.map((monster) => {
+          //   return (
+          //     <div key={monster.id}>
+          //       <h1>{monster.name}</h1>
+          //     </div>
+          //   )
+          // })
+
+          // custom components that are imported are capitalized
+          <CardList></CardList>
         }
       </div>
     );
