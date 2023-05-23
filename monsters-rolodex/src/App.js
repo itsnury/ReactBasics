@@ -71,7 +71,11 @@ class App extends Component {
     return (
       <div className='App'>
 
-      <SearchBox className='serachBox' onChangeHandler={onSearchChange} placeholder='Search monsters...'></SearchBox>
+      <SearchBox 
+        className='monsters-search-box'
+        onChangeHandler={onSearchChange}
+        placeholder='Search monsters...'>
+      </SearchBox>
 
         {
           // filteredMonsters.map((monster) => {
@@ -80,7 +84,7 @@ class App extends Component {
           //       <h1>{monster.name}</h1>
           //     </div>
           //   )
-          // })
+          // }) 
 
           // custom components that are imported are capitalized
           <CardList monsters={filteredMonsters}></CardList>
