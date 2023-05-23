@@ -6,6 +6,7 @@ to class component
 //import logo from './logo.svg';
 import './App.css';
 import CardList from './components/card-list/card-list.component'
+import SearchBox from './components/search-box/search-box.component'
 
 class App extends Component {
   // consructor always runs first when App is called
@@ -69,8 +70,8 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <input className='search-box' type='search' placeholder='Search monster...' onChange={onSearchChange}>
-        </input>
+
+      <SearchBox className='serachBox' onChangeHandler={onSearchChange} placeholder='Search monsters...'></SearchBox>
 
         {
           // filteredMonsters.map((monster) => {
@@ -82,7 +83,7 @@ class App extends Component {
           // })
 
           // custom components that are imported are capitalized
-          <CardList></CardList>
+          <CardList monsters={filteredMonsters}></CardList>
         }
       </div>
     );
